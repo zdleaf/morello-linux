@@ -17,6 +17,12 @@
 #include <linux/sockptr.h>
 #include <net/net_namespace.h>
 
+#ifdef CONFIG_CHERI_PURECAP_UABI
+typedef __uintcap_t		__nf_kptr_t;
+#else
+typedef unsigned long 		__nf_kptr_t;
+#endif
+
 static inline int NF_DROP_GETERR(int verdict)
 {
 	return -(verdict >> NF_VERDICT_QBITS);

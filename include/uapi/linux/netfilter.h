@@ -7,6 +7,14 @@
 #include <linux/in.h>
 #include <linux/in6.h>
 
+#ifndef __KERNEL__
+#ifdef __CHERI_PURE_CAPABILITY__
+typedef __uintcap_t		__nf_kptr_t;
+#else
+typedef unsigned long 		__nf_kptr_t;
+#endif
+#endif
+
 /* Responses from hook functions. */
 #define NF_DROP 0
 #define NF_ACCEPT 1

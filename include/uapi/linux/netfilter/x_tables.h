@@ -8,6 +8,14 @@
 #define XT_EXTENSION_MAXNAMELEN 29
 #define XT_TABLE_MAXNAMELEN 32
 
+#ifndef __KERNEL__
+#ifdef __CHERI_PURE_CAPABILITY__
+typedef __uintcap_t             __nf_kptr_t;
+#else
+typedef unsigned long           __nf_kptr_t;
+#endif
+#endif
+
 struct xt_entry_match {
 	union {
 		struct {
