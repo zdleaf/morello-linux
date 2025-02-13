@@ -13,7 +13,6 @@
 #include <linux/bpf.h>
 
 #include <linux/netfilter/xt_bpf.h>
-#include <linux/netfilter/x_tables.h>
 
 MODULE_AUTHOR("Willem de Bruijn <willemb@google.com>");
 MODULE_DESCRIPTION("Xtables: BPF filter match");

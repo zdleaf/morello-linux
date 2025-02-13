@@ -10,7 +10,6 @@
 #include <linux/module.h>
 #include <linux/skbuff.h>
 #include <linux/route.h>
-#include <linux/netfilter/x_tables.h>
 #include <net/net_namespace.h>
 #include <net/netns/generic.h>
 #include <net/route.h>

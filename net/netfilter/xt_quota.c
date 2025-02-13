@@ -8,7 +8,6 @@
 #include <linux/slab.h>
 #include <linux/spinlock.h>
 
-#include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/xt_quota.h>
 #include <linux/module.h>
 

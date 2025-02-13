@@ -3,6 +3,7 @@
 #define _XT_CT_H
 
 #include <linux/types.h>
+#include <linux/netfilter/x_tables.h>
 
 enum {
 	XT_CT_NOTRACK		= 1 << 0,
@@ -24,7 +25,10 @@ struct xt_ct_target_info {
 	char helper[16];
 
 	/* Used internally by the kernel */
-	struct nf_conn	*ct __attribute__((aligned(8)));
+	union {
+		struct nf_conn	*ct;
+		__nf_kptr_t __ct;
+	}  __attribute__((aligned(8)));
 };
 
 struct xt_ct_target_info_v1 {
@@ -36,7 +40,10 @@ struct xt_ct_target_info_v1 {
 	char timeout[32];
 
 	/* Used internally by the kernel */
-	struct nf_conn	*ct __attribute__((aligned(8)));
+	union {
+		struct nf_conn	*ct;
+		__nf_kptr_t __ct;
+	} __attribute__((aligned(8)));
 };
 
 #endif /* _XT_CT_H */

@@ -3,13 +3,17 @@
 #define _XT_TEE_TARGET_H
 
 #include <linux/netfilter.h>
+#include <linux/netfilter/x_tables.h>
 
 struct xt_tee_tginfo {
 	union nf_inet_addr gw;
 	char oif[16];
 
 	/* used internally by the kernel */
-	struct xt_tee_priv *priv __attribute__((aligned(8)));
+	union {
+		struct xt_tee_priv *priv;
+		__nf_kptr_t __priv;
+	} __attribute__((aligned(8)));
 };
 
 #endif /* _XT_TEE_TARGET_H */

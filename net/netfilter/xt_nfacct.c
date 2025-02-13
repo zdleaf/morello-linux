@@ -8,7 +8,6 @@
 #include <linux/module.h>
 #include <linux/skbuff.h>
 
-#include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/nfnetlink_acct.h>
 #include <linux/netfilter/xt_nfacct.h>
 

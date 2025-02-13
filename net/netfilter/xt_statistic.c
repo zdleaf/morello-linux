@@ -12,7 +12,6 @@
 #include <linux/slab.h>
 
 #include <linux/netfilter/xt_statistic.h>
-#include <linux/netfilter/x_tables.h>
 #include <linux/module.h>
 
 struct xt_statistic_priv {

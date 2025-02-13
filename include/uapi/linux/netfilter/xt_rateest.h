@@ -4,6 +4,7 @@
 
 #include <linux/types.h>
 #include <linux/if.h>
+#include <linux/netfilter/x_tables.h>
 
 enum xt_rateest_match_flags {
 	XT_RATEEST_MATCH_INVERT	= 1<<0,
@@ -32,8 +33,14 @@ struct xt_rateest_match_info {
 	__u32		pps2;
 
 	/* Used internally by the kernel */
-	struct xt_rateest	*est1 __attribute__((aligned(8)));
-	struct xt_rateest	*est2 __attribute__((aligned(8)));
+	union {
+		struct xt_rateest *est1;
+		__nf_kptr_t __est1;
+	} __attribute__((aligned(8)));
+	union {
+		struct xt_rateest *est2;
+		__nf_kptr_t __est2;
+	} __attribute__((aligned(8)));
 };
 
 #endif /* _XT_RATEEST_MATCH_H */

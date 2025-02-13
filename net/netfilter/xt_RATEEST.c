@@ -13,7 +13,6 @@
 #include <net/netlink.h>
 #include <net/netns/generic.h>
 
-#include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/xt_RATEEST.h>
 #include <net/netfilter/xt_rateest.h>
 

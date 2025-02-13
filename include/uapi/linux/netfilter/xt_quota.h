@@ -3,6 +3,7 @@
 #define _XT_QUOTA_H
 
 #include <linux/types.h>
+#include <linux/netfilter/x_tables.h>
 
 enum xt_quota_flags {
 	XT_QUOTA_INVERT		= 0x1,
@@ -17,7 +18,10 @@ struct xt_quota_info {
 	__aligned_u64 quota;
 
 	/* Used internally by the kernel */
-	struct xt_quota_priv	*master;
+	union {
+		struct xt_quota_priv *master;
+		__nf_kptr_t __master;
+	};
 };
 
 #endif /* _XT_QUOTA_H */

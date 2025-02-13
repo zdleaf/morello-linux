@@ -17,7 +17,6 @@
 #include <linux/ipv6.h>
 #include <linux/module.h>
 #include <linux/skbuff.h>
-#include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/xt_connlimit.h>
 
 #include <net/netfilter/nf_conntrack.h>

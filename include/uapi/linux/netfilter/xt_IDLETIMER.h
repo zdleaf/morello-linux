@@ -15,6 +15,7 @@
 #define _XT_IDLETIMER_H
 
 #include <linux/types.h>
+#include <linux/netfilter/x_tables.h>
 
 #define MAX_IDLETIMER_LABEL_SIZE 28
 #define XT_IDLETIMER_ALARM 0x01
@@ -25,7 +26,10 @@ struct idletimer_tg_info {
 	char label[MAX_IDLETIMER_LABEL_SIZE];
 
 	/* for kernel module internal use only */
-	struct idletimer_tg *timer __attribute__((aligned(8)));
+	union {
+		struct idletimer_tg *timer;
+		__nf_kptr_t __timer;
+	} __attribute__((aligned(8)));
 };
 
 struct idletimer_tg_info_v1 {
@@ -37,6 +41,9 @@ struct idletimer_tg_info_v1 {
 	__u8 timer_type;
 
 	/* for kernel module internal use only */
-	struct idletimer_tg *timer __attribute__((aligned(8)));
+	union {
+		struct idletimer_tg *timer;
+		__nf_kptr_t __timer;
+	} __attribute__((aligned(8)));
 };
 #endif

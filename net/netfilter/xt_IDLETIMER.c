@@ -22,7 +22,6 @@
 #include <linux/list.h>
 #include <linux/mutex.h>
 #include <linux/netfilter.h>
-#include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/xt_IDLETIMER.h>
 #include <linux/kdev_t.h>
 #include <linux/kobject.h>

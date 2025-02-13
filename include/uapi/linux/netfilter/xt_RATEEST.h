@@ -4,6 +4,7 @@
 
 #include <linux/types.h>
 #include <linux/if.h>
+#include <linux/netfilter/x_tables.h>
 
 struct xt_rateest_target_info {
 	char			name[IFNAMSIZ];
@@ -11,7 +12,10 @@ struct xt_rateest_target_info {
 	__u8		ewma_log;
 
 	/* Used internally by the kernel */
-	struct xt_rateest	*est __attribute__((aligned(8)));
+	union {
+		struct xt_rateest *est;
+		__nf_kptr_t __est;
+	} __attribute__((aligned(8)));
 };
 
 #endif /* _XT_RATEEST_TARGET_H */

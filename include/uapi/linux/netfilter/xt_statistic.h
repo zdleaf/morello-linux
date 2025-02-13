@@ -2,6 +2,7 @@
 #ifndef _XT_STATISTIC_H
 #define _XT_STATISTIC_H
 
+#include <linux/netfilter/x_tables.h>
 #include <linux/types.h>
 
 enum xt_statistic_mode {
@@ -31,7 +32,10 @@ struct xt_statistic_info {
 			__u32	count; /* unused */
 		} nth;
 	} u;
-	struct xt_statistic_priv *master __attribute__((aligned(8)));
+	union {
+		struct xt_statistic_priv *master;
+		__nf_kptr_t __master;
+	} __attribute__((aligned(8)));
 };
 
 #endif /* _XT_STATISTIC_H */

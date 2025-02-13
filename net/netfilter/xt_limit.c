@@ -10,7 +10,6 @@
 #include <linux/skbuff.h>
 #include <linux/interrupt.h>
 
-#include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/xt_limit.h>
 
 struct xt_limit_priv {

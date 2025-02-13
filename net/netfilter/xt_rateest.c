@@ -6,7 +6,6 @@
 #include <linux/skbuff.h>
 #include <linux/gen_stats.h>
 
-#include <linux/netfilter/x_tables.h>
 #include <linux/netfilter/xt_rateest.h>
 #include <net/netfilter/xt_rateest.h>
 
