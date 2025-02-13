@@ -29,7 +29,10 @@ struct xt_entry_match {
 			__u16 match_size;
 
 			/* Used inside the kernel */
-			struct xt_match *match;
+			union {
+				struct xt_match *match;
+				__nf_kptr_t __match;
+			};
 		} kernel;
 
 		/* Total length */
@@ -52,7 +55,10 @@ struct xt_entry_target {
 			__u16 target_size;
 
 			/* Used inside the kernel */
-			struct xt_target *target;
+			union {
+				struct xt_target *target;
+				__nf_kptr_t __target;
+			};
 		} kernel;
 
 		/* Total length */
