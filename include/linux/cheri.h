@@ -2,7 +2,7 @@
 #ifndef _LINUX_CHERI_H
 #define _LINUX_CHERI_H
 
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 
 #include <cheriintrin.h>
 
@@ -129,6 +129,6 @@ extern uintcap_t cheri_user_root_seal_cap;	/* Userspace sealing root */
 extern uintcap_t cheri_user_root_cid_cap;	/* Userspace compartment ID root */
 extern uintcap_t cheri_user_root_allperms_cap;	/* Userspace root (all permissions) */
 
-#endif /* __CHERI__ */
+#endif /* __has_feature(capabilities) */
 
 #endif	/* _LINUX_CHERI_H */

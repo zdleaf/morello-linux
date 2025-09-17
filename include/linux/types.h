@@ -73,7 +73,7 @@ typedef __PTRADDR_TYPE__	ptraddr_t;
 typedef unsigned long		ptraddr_t;
 #endif
 
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 typedef __uintcap_t		uintcap_t;
 #endif
 

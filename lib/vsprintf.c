@@ -440,7 +440,7 @@ enum format_type {
 	FORMAT_TYPE_INT,
 	FORMAT_TYPE_SIZE_T,
 	FORMAT_TYPE_PTRDIFF,
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 	FORMAT_TYPE_CAPABILITY,
 #endif
 };
@@ -2510,7 +2510,7 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
 	}
 }
 
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 /*
  * Support for printing capabilities with %[#]lp[x] format.
  * It stands slightly in contradiction to kernel extensions
@@ -2679,7 +2679,7 @@ char *capability(const char *fmt, char *buf, char *end, void * __capability cap,
 
 #undef update_buf_single
 }
-#endif /* __CHERI__ */
+#endif /* __has_feature(capabilities) */
 
 /*
  * Helper function to decode printf style format.
@@ -2817,7 +2817,7 @@ qualifier:
 
 	case 'p':
 		spec->type = FORMAT_TYPE_PTR;
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 		if (qualifier == 'l')
 			spec->type = FORMAT_TYPE_CAPABILITY;
 #endif
@@ -3016,7 +3016,7 @@ int vsnprintf(char *buf, size_t size, const char *fmt, va_list args)
 				*str = '%';
 			++str;
 			break;
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 		case FORMAT_TYPE_CAPABILITY:
 			str = capability(fmt, str, end,
 					 va_arg(args, void * __capability),
@@ -3344,7 +3344,7 @@ int vbin_printf(u32 *bin_buf, size_t size, const char *fmt, va_list args)
 			while (isalnum(*fmt))
 				fmt++;
 			break;
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 		case FORMAT_TYPE_CAPABILITY:
 			/*
 			 * Capabilities shall be handled now: subject to
@@ -3543,7 +3543,7 @@ int bstr_printf(char *buf, size_t size, const char *fmt, const u32 *bin_buf)
 				fmt++;
 			break;
 		}
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 		case FORMAT_TYPE_CAPABILITY:
 			if (str < end) {
 				long length = strlen(args);

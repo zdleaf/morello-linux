@@ -784,7 +784,7 @@ errptr(void)
 static void __init
 capability_pointer(void)
 {
-#ifdef __CHERI__
+#if __has_feature(capabilities)
 	enum action {
 		/* No action - use as is */
 		CAP_AXN_NONE,
